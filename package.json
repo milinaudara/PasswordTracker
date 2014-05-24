@@ -1,0 +1,22 @@
+{
+  "name": "PasswordTracker",
+  "version": "0.0.0",
+  "description": "Sample web app for Node.js and Sequelize.js ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/milinaudara/PasswordTracker.git"
+  },
+  "author": "Milina Udara",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/milinaudara/PasswordTracker/issues"
+  },
+  "homepage": "https://github.com/milinaudara/PasswordTracker",
+  "dependencies": {
+    "express": "~4.3.1"
+  }
+}
