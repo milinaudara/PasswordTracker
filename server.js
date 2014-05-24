@@ -1,31 +1,39 @@
 // get dependencies
-var app = require('express')();
-var Sequelize = require('sequelize');
+var express = require("express");
+var Sequelize = require("sequelize");
+var bodyParser = require('body-parser');
+var app = express();
+app.use(bodyParser());
 
 // sequelize initialization
 var sequelize = new Sequelize("postgres://username:password@localhost:5432/dbname");
-
 // model definition
 var User = sequelize.define("User", {
     username: Sequelize.STRING,
     password: Sequelize.STRING
 });
 
-//sync the model with the database
-sequelize.sync({ force: true }).success(function(err) {
-    // insert new user
-    User.create({
-        username: "john",
-        password: "a_secret"
-    }).success(function() {
-        User.find({
-            where: { username: 'john' }
-        }).success(function(john) {
-            console.log('Hello ' + john.username + '!');
-            console.log('All attributes of john:', john.values);
-        });
+var createUser = function (req, res) {
+    var newUser={
+        username: req.body.username,
+        password:req.body.password
+    }
+    User.create(newUser).success(function () {
+        res.send(200);
     });
+};
+
+var getUser = function (req, res) {
+    User.findAll().success(function (users) {
+       res.send(users);
+    });
+};
+
+sequelize.sync().success(function (err) {
+    app.get("/users", getUser);
+    app.post("/users", createUser);
+    // initializing a port
+    app.listen(5000);
 });
 
-// initializing a port
-app.listen(5000);
+
