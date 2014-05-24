@@ -16,7 +16,7 @@ Clone the repository:
 
 		$ git clone https://github.com/milinaudara/PasswordTracker.git
 
-Create database and user in pgAdmin and update the connection string ar server.js
+Create database and user in pgAdmin and update the connection string at server.js
 
 Install dependencies:
 
@@ -28,4 +28,4 @@ Start web server:
 		$ npm start
 
 ###More Information
- *Blog Post [An Introduction to Sequelize.Js](http://milinaudara.wordpress.com/2014/05/24/an-introduction-to-sequelize-js/)
+ Blog Post [An Introduction to Sequelize.Js](http://milinaudara.wordpress.com/2014/05/24/an-introduction-to-sequelize-js/)

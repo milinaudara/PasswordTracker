@@ -17,9 +17,13 @@ sequelize.sync({ force: true }).success(function(err) {
     User.create({
         username: "john",
         password: "a_secret"
-    }).success(function(user) {
-        // you can now access the newly created user via the variable user
-        console.log(user);
+    }).success(function() {
+        User.find({
+            where: { username: 'john' }
+        }).success(function(john) {
+            console.log('Hello ' + john.username + '!');
+            console.log('All attributes of john:', john.values);
+        });
     });
 });
 
