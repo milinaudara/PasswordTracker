@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/milinaudara/PasswordTracker",
   "dependencies": {
-    "express": "~4.3.1"
+    "express": "~4.3.1",
+    "sequelize": "~1.7.5",
+    "pg": "~3.2.0"
   }
 }
