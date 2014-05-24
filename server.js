@@ -7,33 +7,12 @@ app.use(bodyParser());
 
 // sequelize initialization
 var sequelize = new Sequelize("postgres://username:password@localhost:5432/dbname");
-// model definition
-var User = sequelize.define("User", {
-    username: Sequelize.STRING,
-    password: Sequelize.STRING
-});
+var userService= require("./userService")(sequelize);
 
-var createUser = function (req, res) {
-    var newUser={
-        username: req.body.username,
-        password:req.body.password
-    }
-    User.create(newUser).success(function () {
-        res.send(200);
-    });
-};
-
-var getUser = function (req, res) {
-    User.findAll().success(function (users) {
-       res.send(users);
-    });
-};
-
+//sync the model with the database
 sequelize.sync().success(function (err) {
-    app.get("/users", getUser);
-    app.post("/users", createUser);
-    // initializing a port
+    app.get("/users", userService.get);
+    app.post("/users", userService.create);
     app.listen(5000);
 });
-
 
